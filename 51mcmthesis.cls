@@ -1,19 +1,19 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{51mcmthesis}[2025/04/26 v1.0 Standard LaTex Template for 51MCM]
 
-%% Inital Code
-\newif\if@mcm@bwprint\@mcm@bwprintfalse
-\newif\if@mcm@preface\@mcm@prefacetrue
+% %% Inital Code
+% \newif\if@mcm@bwprint\@mcm@bwprintfalse
+% \newif\if@mcm@preface\@mcm@prefacetrue
 
-%% Declaration of Options
-\DeclareOption{colorprint}{\@mcm@bwprintfalse}
-\DeclareOption{bwprint}{\@mcm@bwprinttrue}
-\DeclareOption{withoutpreface}{\@mcm@prefacefalse}
-\DeclareOption*{\PassOptionsToClass{\CurrentOption}{article}}
+% %% Declaration of Options
+% \DeclareOption{colorprint}{\@mcm@bwprintfalse}
+% \DeclareOption{bwprint}{\@mcm@bwprinttrue}
+% \DeclareOption{withoutpreface}{\@mcm@prefacefalse}
+% \DeclareOption*{\PassOptionsToClass{\CurrentOption}{article}}
 
-%% Executing of Options
-\ExecuteOptions{colorprint}
-\ProcessOptions\relax
+% %% Executing of Options
+% \ExecuteOptions{colorprint}
+% \ProcessOptions\relax
 
 \LoadClass[a4paper,12pt]{article}
 
@@ -59,6 +59,7 @@
 % 绘图的包
 %\RequirePackage{tikz}
 %\usetikzlibrary{snakes}
+\RequirePackage{fontspec}
 
 \geometry{top=25.4mm,bottom=25.4mm,left=30.8mm,right=26.8mm} % 页面布局 上:25.4mm, 下:25.4mm, 左:30.8mm, 右:26.8mm
 
@@ -90,13 +91,15 @@
 \setmainfont{Times New Roman}
 %\setmonofont{Courier New}
 \setsansfont{Arial}
-\setCJKfamilyfont{kai}[AutoFakeBold]{SimSun}
+\setCJKfamilyfont{kai}[AutoFakeBold]{SimKai}
 \newcommand*{\kai}{\CJKfamily{kai}}
 \setCJKfamilyfont{song}[AutoFakeBold]{SimSun}
 \newcommand*{\song}{\CJKfamily{song}}
 \renewcommand{\songti}{\CJKfamily{song}}
 \setCJKfamilyfont{yahei}[AutoFakeBold]{Microsoft YaHei}
 \newcommand{\yahei}{\CJKfamily{yahei}}
+\setCJKfamilyfont{heiti}[AutoFakeBold]{SimHei}
+\renewcommand{\heiti}{\CJKfamily{heiti}}
 
 \newcommand{\stextbf}[1]{{\songti\bfseries #1}}
 
@@ -110,20 +113,23 @@
     \thispagestyle{empty}
     {
         \begin{center}
-            \yahei\xiaoerhao\noindent 五一数学建模竞赛\par
-            \yahei\sanhao\noindent 承\quad 诺\quad 书
+            \yahei\xiaoerhao\noindent 五一数学建模竞赛\\
+            \yahei\sanhao\noindent 承\quad 诺\quad 书 \\
         \end{center}
+        \vspace*{-1em}
         \CommitmentDeclaration
         \clearpage
     }
     \setcounter{page}{1}
     {
         \begin{center}
-            \yahei\xiaoerhao\textbf{五 \! 一 \! 数 \! 学 \! 建 \! 模 \! 竞 \! 赛}\\ \vspace{10pt}
-            \includegraphics{51mcm.png} \\ \vspace{1em}
-
-            \songti\sihao \textbf{题目：} \underline{\makebox[20em][c]{\@title}}
-        \end{center}
+            {\yahei\xiaoerhao\textbf{五 \! 一 \! 数 \! 学 \! 建 \! 模 \! 竞 \! 赛}}\\[8pt]
+            \includegraphics[width=3.95cm,height=3.18cm]{51mcm.png} \\[3em]
+            {\songti\sanhao
+                \textbf{题 \! 目：}
+                \underline{\makebox[18em][c]{\hspace{-3em}\heiti\sanhao\bfseries \@title}}%
+            }
+        \end{center}        
     }
 }
 %% 定义摘要环境
@@ -156,7 +162,7 @@
 \newcommand{\CommitmentDeclaration}{%
     % 首行缩进
     \setlength{\parindent}{2em}% 首行缩进两字符
-    \setlength{\baselineskip}{20pt}%行距1.5倍
+    \setlength{\baselineskip}{18pt}%行距1.5倍
     \songti\xiaosihao\par
     我们仔细阅读了五一数学建模竞赛的竞赛规则。\par
     我们完全明白，在竞赛开始后参赛队员不能以任何方式（包括电话、电子邮件、网上咨询等）与本队以外的任何人（包括指导教师）研究、讨论与赛题有关的问题。\par
