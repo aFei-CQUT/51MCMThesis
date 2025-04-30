@@ -2,18 +2,18 @@
 \ProvidesClass{51mcmthesis}[2025/04/26 v1.0 Standard LaTex Template for 51MCM]
 
 % %% Inital Code
-% \newif\if@mcm@bwprint\@mcm@bwprintfalse
-% \newif\if@mcm@preface\@mcm@prefacetrue
+\newif\if@mcm@bwprint\@mcm@bwprintfalse
+\newif\if@mcm@preface\@mcm@prefacetrue
 
-% %% Declaration of Options
-% \DeclareOption{colorprint}{\@mcm@bwprintfalse}
-% \DeclareOption{bwprint}{\@mcm@bwprinttrue}
-% \DeclareOption{withoutpreface}{\@mcm@prefacefalse}
-% \DeclareOption*{\PassOptionsToClass{\CurrentOption}{article}}
+%% Declaration of Options
+\DeclareOption{colorprint}{\@mcm@bwprintfalse}
+\DeclareOption{bwprint}{\@mcm@bwprinttrue}
+\DeclareOption{withoutpreface}{\@mcm@prefacefalse}
+\DeclareOption*{\PassOptionsToClass{\CurrentOption}{article}}
 
-% %% Executing of Options
-% \ExecuteOptions{colorprint}
-% \ProcessOptions\relax
+%% Executing of Options
+\ExecuteOptions{colorprint}
+\ProcessOptions\relax
 
 \LoadClass[a4paper,12pt]{article}
 
@@ -363,6 +363,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \def\@maketitle{
+    \if@mcm@preface
     \thispagestyle{empty}
     {
         \begin{center}
@@ -384,17 +385,37 @@
             }
         \end{center}
     }
+    \else
+    \fi
 }
 %% 定义摘要环境
-\renewenvironment{abstract}{%}
+\renewenvironment{abstract}{
     \noindent
     \if@twocolumn
         \section*{\abstractname}%
     \else
         {\xiaosihao\bfseries\songti 摘\quad 要：}%
         \quotation
-    \fi}
-{\if@twocolumn\else\endquotation\newpage\null\fi}
+    \fi
+}
+
+\RequirePackage{environ}
+
+\NewEnviron{kwabstract}[1]{
+    \if@mcm@preface
+        \noindent
+        \keywords{#1}
+        {\xiaosihao\bfseries\songti 摘\quad 要：}%
+        \quotation
+        \BODY
+        \endquotation
+        \newpage\null
+    \fi
+}
+
+
+
+% {\if@twocolumn\else\endquotation\newpage\null\fi}
 \renewenvironment{quotation}
 
 {\list{}{\listparindent 2em%
