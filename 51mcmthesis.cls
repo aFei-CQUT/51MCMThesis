@@ -75,7 +75,40 @@
 \renewcommand{\cftsecaftersnumb}{\hskip.4em}
 
 \RequirePackage{fontspec}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{
+  frame=tb,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  framerule=1pt,
+  rulecolor=\color{gray!35},
+  backgroundcolor=\color{gray!5},
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=3,
+}
+% 首行缩进
+\RequirePackage{setspace}
+% 设置浮动体的标题
+\RequirePackage{caption}
+% 定制列表环境
 \RequirePackage{enumitem}
+% 下划线
+\RequirePackage{ulem}
+% 尺寸计算
+\RequirePackage{calc}
 \RequirePackage{caption}
 
 \RequirePackage[titletoc,title]{appendix}
@@ -347,7 +380,7 @@
             \includegraphics[width=3.95cm,height=3.18cm]{51mcm.png} \\[3em]
             {\songti\sanhao
             \textbf{题 \! 目：}
-            \underline{\makebox[18em][c]{\hspace{-3em}\heiti\sanhao\bfseries \@title}}%
+            \underline{\makebox[18em][c]{\heiti\sanhao\bfseries \@title}}%
             }
         \end{center}
     }
