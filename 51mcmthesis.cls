@@ -179,6 +179,13 @@
 % 注意:  |\floatpagefraction| 的数值必须小于 |\topfraction|.
 \renewcommand*{\floatpagefraction}{0.85}
 
+% 关于图片 graphicx
+% 如果图片没有指定后缀, 依次按下列顺序搜索
+\DeclareGraphicsExtensions{.pdf,.eps,.jpg,.png}
+% 设置图表搜索路径, 可以给图表文件夹取如下名字
+\graphicspath{{figures/}{figure/}{pictures/}%
+    {picture/}{pic/}{pics/}{image/}{images/}}
+
 % 定义存储内容的命令
 \newcommand{\tihao}[1]{\def\@tihao{#1}}
 \newcommand{\duihao}[1]{\def\@duihao{#1}}
