@@ -1,7 +1,7 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{51mcmthesis}[2025/04/26 v1.0 Standard LaTex Template for 51MCM]
 
-% %% Inital Code
+% %% Initial Code
 \newif\if@mcm@bwprint\@mcm@bwprintfalse
 \newif\if@mcm@preface\@mcm@prefacetrue
 
@@ -23,7 +23,7 @@
     \ClassError{51mcmthesis}{XeTeX is required}{}\fi
 
 % Required packages
-\RequirePackage{ctex}
+\RequirePackage[]{ctex}
 % 页面布局
 \RequirePackage{geometry}
 % 数学宏包
@@ -50,10 +50,14 @@
 %% 在跨行表格中输入定界符
 \RequirePackage{bigdelim}
 % 保护脆落命令
+
 \RequirePackage{cprotect}
 % 设置代码环境
+\RequirePackage[listings,skins]{tcolorbox}
 \RequirePackage{listings}
 \RequirePackage{xcolor}
+
+
 % 插入链接
 \RequirePackage{url}
 
@@ -80,6 +84,58 @@
 \definecolor{gray}{rgb}{0.5,0.5,0.5}
 \definecolor{mauve}{rgb}{0.58,0,0.82}
 
+% 定义代码文件输入环境
+\newtcbinputlisting[auto counter]{\codefile}[2][]{%
+    listing file={#2},
+    title={\lstlistingname~\thetcbcounter: #1},
+    colback=gray!5,
+    colframe=gray!35,
+    fonttitle=\bfseries,
+    listing only,
+    listing options={
+        basicstyle=\small\ttfamily,
+        language=#1,
+        breaklines=true,
+        breakatwhitespace=true,
+        tabsize=3,
+        numbers=left,
+        numberstyle=\tiny\color{gray},
+        keywordstyle=\color{blue},
+        commentstyle=\color{dkgreen},
+        stringstyle=\color{mauve},
+    },
+    enhanced,
+    overlay={
+        \draw[gray!35,line width=1pt] (frame.north west)--(frame.north east);
+    }
+}
+
+% 定义代码块环境
+\newtcblisting[auto counter]{codeblock}[1][]{%
+    title={\lstlistingname~\thetcbcounter: #1},
+    colback=gray!5,
+    colframe=gray!35,
+    fonttitle=\bfseries,
+    listing only,
+    listing options={
+        basicstyle=\small\ttfamily,
+        language=#1,
+        breaklines=true,
+        breakatwhitespace=true,
+        tabsize=3,
+        numbers=left,
+        numberstyle=\tiny\color{gray},
+        keywordstyle=\color{blue},
+        commentstyle=\color{dkgreen},
+        stringstyle=\color{mauve},
+    },
+    enhanced,
+    overlay={
+        \draw[gray!35,line width=1pt] (frame.north west)--(frame.north east);
+    }
+}
+
+% 原有 lstset 设置（可保留作为备用）
 \lstset{
   frame=tb,
   aboveskip=3mm,
@@ -208,7 +264,7 @@
 \newcommand*{\song}{\CJKfamily{song}}
 \renewcommand{\songti}{\CJKfamily{song}}
 \setCJKfamilyfont{yahei}[AutoFakeBold]{Microsoft YaHei}
-\newcommand{\yahei}{\CJKfamily{yahei}}
+\providecommand{\yahei}{\CJKfamily{yahei}}
 \setCJKfamilyfont{heiti}[AutoFakeBold]{SimHei}
 \renewcommand{\heiti}{\CJKfamily{heiti}}
 \setCJKfamilyfont{fangsong}[AutoFakeBold,AutoFakeSlant]{FangSong}

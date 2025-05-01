@@ -20,10 +20,9 @@
 
 \begin{document}
 
- \maketitle
- \begin{kwabstract}{\TeX{}\quad  图片\quad   表格\quad  公式}
+\maketitle
+\begin{kwabstract}{\TeX{}\quad  图片\quad   表格\quad  公式}
 51mcmthesis 是为五一杯数学建模竞赛编写的\LaTeX{}模板, 旨在让大家专注于 论文的内容写作, 而不用花费过多精力在格式的定制和调整上. 本手册是相应的参考, 其 中提供了一些环境和命令可以让模板的使用更为方便. 同时需要注意, 使用者需要有一 定的 \LaTeX{} 的使用经验, 至少要会使用常用宏包的一些功能, 比如参考文献，数学公式，图片使用，列表环境等等. 例子文件参看 \texttt{example.tex}.
-
 \end{kwabstract}
 
 %目录  2019 明确不要目录，我觉得这个规定太好了
@@ -50,54 +49,54 @@
 
 使用该模板前，请阅读模板的使用说明文档。下面给出模板使用的大概样式。
 
-\begin{tcode}
-    \documentclass{cumcmthesis}
-    %\documentclass[withoutpreface,bwprint]{cumcmthesis} %去掉封面与编号页
+\begin{codeblock}[TeX]
+\documentclass{cumcmthesis}
+%\documentclass[withoutpreface,bwprint]{cumcmthesis} %去掉封面与编号页
 
-    \title{\hspace{2em}五一杯数学建模竞赛论文\LaTeX{}模板}
-    \tihao{A}            % 题号
-    \duihao{4321}    % 报名号
-    \zubie{本科}
-    \schoolname{你的大学}
-    \membera{成员A}
-    \memberb{成员B}
-    \memberc{成员C}
-    \email{example@email.com}
-    \phone{1234567890}
+\title{\hspace{2em}五一杯数学建模竞赛论文\LaTeX{}模板}
+\tihao{A}            % 题号
+\duihao{4321}    % 报名号
+\zubie{本科}
+\schoolname{你的大学}
+\membera{成员A}
+\memberb{成员B}
+\memberc{成员C}
+\email{example@email.com}
+\phone{1234567890}
 
-    \begin{document}
-        \maketitle
-        \keywords{关键词1\quad  关键词2\quad   关键词3}
-        \begin{abstract}
-            摘要的具体内容。
-        \end{abstract}
-        \tableofcontents
-        \section{问题重述}
-        \subsection{问题的提出}
-        \section{模型的假设}
-        \section{符号说明}
-        \begin{center}
-            \begin{tabular}{cc}
-                \hline
-                \makebox[0.3\textwidth][c]{符号}	&  \makebox[0.4\textwidth][c]{意义} \\ \hline
-                D	    & 木条宽度（cm） \\ \hline
-            \end{tabular}
-        \end{center}
-        \section{问题分析}
-        \section{总结}
-        \begin{thebibliography}{9}%宽度9
-            \bibitem{bib:one} ....
-        \end{thebibliography}
-        \begin{appendices}
-            附录的内容。
-        \end{appendices}
-    \end{document}
-\end{tcode}
+\begin{document}
+    \maketitle
+    \keywords{关键词1\quad  关键词2\quad   关键词3}
+    \begin{abstract}
+        摘要的具体内容。
+    \end{abstract}
+    \tableofcontents
+    \section{问题重述}
+    \subsection{问题的提出}
+    \section{模型的假设}
+    \section{符号说明}
+    \begin{center}
+        \begin{tabular}{cc}
+            \hline
+            \makebox[0.3\textwidth][c]{符号}	&  \makebox[0.4\textwidth][c]{意义} \\ \hline
+            D	    & 木条宽度（cm） \\ \hline
+        \end{tabular}
+    \end{center}
+    \section{问题分析}
+    \section{总结}
+    \begin{thebibliography}{9}%宽度9
+        \bibitem{bib:one} ....
+    \end{thebibliography}
+    \begin{appendices}
+        附录的内容。
+    \end{appendices}
+\end{document}
+\end{codeblock}
 
 根据要求，电子版论文提交时需去掉封面和编号页。可以加上 \verb|withoutpreface|  选项来实现，即：
-\begin{tcode}
-    \documentclass[withoutpreface]{cumcmthesis}
-\end{tcode}
+\begin{codeblock}[TeX]
+\documentclass[withoutpreface]{cumcmthesis}
+\end{codeblock}
 这样就能实现了。打印的时候有超链接的地方不需要彩色，可以加上 \verb|bwprint| 选项。
 
 另外目录也是不需要的，将 \verb|\tableofcontents| 注释或删除，目录就不会出现了。
@@ -105,13 +104,13 @@
 团队的信息填入指定的位置，并且确保信息的正确性，以免因此白忙一场。
 
 编译记得使用 \verb|xelatex|，而不是用 \verb|pdflatex|。在命令行编译的可以按如下方式编译：
-\begin{tcode}
-	xelatex example
-\end{tcode}
+\begin{codeblock}[TeX]
+xelatex example
+\end{codeblock}
 或者使用 \verb|latexmk| 来编译，更推荐这种方式。
-\begin{tcode}
-	latexmk -xelatex example
-\end{tcode}
+\begin{codeblock}[TeX]
+latexmk -xelatex example
+\end{codeblock}
 
 下面给出写作与排版上的一些建议。
 
@@ -190,21 +189,21 @@
 \end{table}
 
 其绘制表格的代码及其说明如下。
-\begin{tcode}
-    \begin{table}[!htbp]
-        \caption[标签名]{中文标题}
-        \begin{tabular}{cc...c}
-            \toprule[1.5pt]
-            表头第1个格   & 表头第2个格   & ... & 表头第n个格  \\
-            \midrule[1pt]
-            表中数据(1,1) & 表中数据(1,2) & ... & 表中数据(1,n)\\
-            表中数据(2,1) & 表中数据(2,2) & ... & 表中数据(2,n)\\
-            ...................................................\\
-            表中数据(m,1) & 表中数据(m,2) & ... & 表中数据(m,n)\\
-            \bottomrule[1.5pt]
-        \end{tabular}
-    \end{table}
-\end{tcode}
+\begin{codeblock}[TeX]
+\begin{table}[!htbp]
+    \caption[标签名]{中文标题}
+    \begin{tabular}{cc...c}
+        \toprule[1.5pt]
+        表头第1个格   & 表头第2个格   & ... & 表头第n个格  \\
+        \midrule[1pt]
+        表中数据(1,1) & 表中数据(1,2) & ... & 表中数据(1,n)\\
+        表中数据(2,1) & 表中数据(2,2) & ... & 表中数据(2,n)\\
+        ...................................................\\
+        表中数据(m,1) & 表中数据(m,2) & ... & 表中数据(m,n)\\
+        \bottomrule[1.5pt]
+    \end{tabular}
+\end{table}
+\end{codeblock}
 
 \bigskip
 
@@ -338,8 +337,6 @@ f(x) =
 \end{solution}
 由\cref{sol:example}我们知道了解环境的使用。
 
-
-
 \section{其它小功能}
 \subsection{脚注}
 
@@ -375,18 +372,9 @@ f(x) =
 
 \LaTeX{}的入门可以看《\LaTeX{}入门》\cite{liuhaiyang2013latex}。这是一个简单的引用，用 \verb|\cite{bibkey}| 来完成。要引用成功，当然要维护好 bibitem 了。下面是个简单的例子。
 
-
-
 %参考文献
-\begin{thebibliography}{9}%宽度9
-    \bibitem[1]{liuhaiyang2013latex}
-    刘海洋.
-    \newblock \LaTeX {}入门\allowbreak[J].
-    \newblock 电子工业出版社, 北京, 2013.
-    \bibitem[2]{mathematical-modeling}
-    全国大学生数学建模竞赛论文格式规范 (2023 年 修改).
-    \bibitem{3} \url{https://www.latexstudio.net}
-\end{thebibliography}
+\bibliography{references}
+\bibliographystyle{plain}
 
 \newpage
 %附录
@@ -394,7 +382,7 @@ f(x) =
 
 \section{排队算法--matlab 源程序}
 
-\begin{lstlisting}[language=matlab]
+\begin{codeblock}[Matlab]
 kk=2;[mdd,ndd]=size(dd);
 while ~isempty(V)
 [tmpd,j]=min(W(i,V));tmpj=V(j);
@@ -412,11 +400,11 @@ end;end
 dd=[dd,[tmp3;tmp(tmp4,2)]];V(tmp(tmp4,3))=[];
 [mdd,ndd]=size(dd);kk=kk+1;
 end; S=ss; D=dd(1,:);
- \end{lstlisting}
+\end{codeblock}
 
- \section{规划解决程序--lingo源代码}
+\section{规划解决程序--lingo源代码}
 
-\begin{lstlisting}[language=c]
+\begin{codeblock}[C]
 kk=2;
 [mdd,ndd]=size(dd);
 while ~isempty(V)
@@ -439,7 +427,7 @@ end
 end;
 S=ss;
 D=dd(1,:);
- \end{lstlisting}
+\end{codeblock}
 \end{appendices}
 
-\end{document} 
+\end{document}

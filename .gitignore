@@ -5,3 +5,10 @@
 *.log
 *.synctex*
 *.xdv
+*.bbl
+*.blg
+*.out
+*.listing
+*.pdf
+
+contents.py
