@@ -26,11 +26,15 @@
 \RequirePackage[]{ctex}
 % 页面布局
 \RequirePackage{geometry}
+% 书签
+\RequirePackage{bookmark}
 % 数学宏包
 \RequirePackage{amsmath}
 \RequirePackage{amsfonts}
 \RequirePackage{amssymb}
 \RequirePackage{bm}
+\RequirePackage{mathptmx} % Times-like math fonts for compatibility
+\RequirePackage{newtxmath} % Enhanced math font support
 %\RequirePackage{titletoc}
 % 设置颜色
 \RequirePackage{xcolor}
@@ -41,6 +45,7 @@
 \RequirePackage{array}
 %% 长表格
 \RequirePackage{longtable}
+\setlength{\tabcolsep}{8pt} % Default is 6pt, increase for more spacing
 %% booktabs 提供了\toprule 等命令.
 \RequirePackage{booktabs,tabularx}
 %% multirow 支持在表格中跨行
@@ -53,10 +58,10 @@
 
 \RequirePackage{cprotect}
 % 设置代码环境
-\RequirePackage[listings,skins]{tcolorbox}
+\RequirePackage[most]{tcolorbox}  % 替换原来的 \RequirePackage[listings,skins]{tcolorbox}
+\tcbuselibrary{breakable}         % 启用 breakable 功能
 \RequirePackage{listings}
 \RequirePackage{xcolor}
-
 
 % 插入链接
 \RequirePackage{url}
@@ -92,11 +97,13 @@
     colframe=gray!35,
     fonttitle=\bfseries,
     listing only,
+    width=1.0\linewidth,
+    left=2em,  % 为行号留出空间
     listing options={
         basicstyle=\small\ttfamily,
         language=#1,
         breaklines=true,
-        breakatwhitespace=true,
+        breakatwhitespace=false,
         tabsize=3,
         numbers=left,
         numberstyle=\tiny\color{gray},
@@ -105,6 +112,7 @@
         stringstyle=\color{mauve},
     },
     enhanced,
+    breakable, % 显示支持换页才可换页
     overlay={
         \draw[gray!35,line width=1pt] (frame.north west)--(frame.north east);
     }
@@ -117,6 +125,8 @@
     colframe=gray!35,
     fonttitle=\bfseries,
     listing only,
+    width=1.0\linewidth,
+    left=2em,  % 为行号留出空间
     listing options={
         basicstyle=\small\ttfamily,
         language=#1,
@@ -130,6 +140,7 @@
         stringstyle=\color{mauve},
     },
     enhanced,
+    breakable, % 支持长代码自动换页
     overlay={
         \draw[gray!35,line width=1pt] (frame.north west)--(frame.north east);
     }
@@ -137,23 +148,23 @@
 
 % 原有 lstset 设置（可保留作为备用）
 \lstset{
-  frame=tb,
-  aboveskip=3mm,
-  belowskip=3mm,
-  showstringspaces=false,
-  columns=flexible,
-  framerule=1pt,
-  rulecolor=\color{gray!35},
-  backgroundcolor=\color{gray!5},
-  basicstyle={\small\ttfamily},
-  numbers=none,
-  numberstyle=\tiny\color{gray},
-  keywordstyle=\color{blue},
-  commentstyle=\color{dkgreen},
-  stringstyle=\color{mauve},
-  breaklines=true,
-  breakatwhitespace=true,
-  tabsize=3,
+    frame=tb,
+    aboveskip=3mm,
+    belowskip=3mm,
+    showstringspaces=false,
+    columns=flexible,
+    framerule=1pt,
+    rulecolor=\color{gray!35},
+    backgroundcolor=\color{gray!5},
+    basicstyle={\small\ttfamily},
+    numbers=none,
+    numberstyle=\tiny\color{gray},
+    keywordstyle=\color{blue},
+    commentstyle=\color{dkgreen},
+    stringstyle=\color{mauve},
+    breaklines=true,
+    breakatwhitespace=true,
+    tabsize=3,
 }
 % 首行缩进
 \RequirePackage{setspace}
@@ -298,9 +309,9 @@
 \renewcommand\thesubsection{\arabic{section}\thinspace.\thinspace\arabic{subsection}}
 \renewcommand\thesubsubsection{\thesubsection\thinspace.\thinspace\arabic{subsubsection}}
 \renewcommand\section{\@startsection{section}{1}{\z@}%
-  {-2ex \@plus -1ex \@minus -.2ex}%
-  {2.3ex \@plus.2ex}%
-  {\centering\sihao\bfseries\heiti}}
+    {-2ex \@plus -1ex \@minus -.2ex}%
+    {2.3ex \@plus.2ex}%
+    {\centering\sihao\bfseries\heiti}}
 \renewcommand\subsection{\@startsection{subsection}{2}{\z@}%
     {-1ex\@plus -1ex \@minus -.2ex}%
     {1.5ex \@plus .2ex}%
@@ -350,7 +361,7 @@
 	\def\cftdotfill{ }%
 }
 \lstnewenvironment{tcode}
-  {
+{
     \lstset{basicstyle = \small\ttfamily\fangsong,
         language=TeX,
         tabsize = 4,
@@ -360,8 +371,8 @@
         breakatwhitespace = true,
         frameround = tttt,
     }
-  }
-  {}
+}
+{}
 
 %%% crefformat settings
 \crefformat{figure}{#2图~#1#3}
@@ -444,7 +455,7 @@
             \includegraphics[width=3.95cm,height=3.18cm]{51mcm.png} \\[3em]
             {\songti\sanhao
             \textbf{题 \! 目：}
-            \underline{\makebox[18em][c]{\heiti\sanhao\bfseries \@title}}%
+            \underline{\makebox[22em][c]{\heiti\sanhao\bfseries \@title}}%
             }
         \end{center}
     }
@@ -472,7 +483,7 @@
         \quotation
         \BODY
         \endquotation
-        \newpage\null
+        \newpage
     \fi
 }
 
